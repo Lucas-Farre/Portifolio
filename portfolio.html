@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Lucas Arcas Farré – Analista de Power BI</title>
+<meta name="description" content="Portfólio de Lucas Arcas Farré: dashboards, automações e integrações de APIs com Power BI, Python, SQL e Azure.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#000; --surface:#0f1113; --ink:#fff; --muted:#aab4bd; --line:#2a2e33;
+  --accent:#5fc3cf; --bar:#33474f;
+  --display:"Bricolage Grotesque","Segoe UI",Helvetica,Arial,sans-serif;
+  --body:"Instrument Sans","Segoe UI",Helvetica,Arial,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth;background:var(--bg)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--body);-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:62rem;margin:0 auto;padding:0 1.5rem}
+h1,h2,h3{font-family:var(--display);line-height:1.1;margin:0;letter-spacing:-.01em}
+h2{font-size:1.9rem;font-weight:700;margin-bottom:1.75rem}
+section{padding:4rem 0;border-top:1px solid var(--line)}
+
+header.hero{padding:4.5rem 0 3.5rem}
+.hero .wrap{display:grid;gap:2.5rem;grid-template-columns:1fr}
+.hero h1{font-size:clamp(2.6rem,8vw,5rem);font-weight:700}
+.role{font:500 1.35rem/1.3 var(--display);color:var(--accent);margin:1rem 0 1.25rem}
+.lead{max-width:34rem;color:var(--muted);margin:0 0 1.75rem}
+.cta{display:flex;flex-wrap:wrap;gap:.75rem}
+.btn{display:inline-block;padding:.7rem 1.15rem;border-radius:6px;font:600 1rem var(--body);text-decoration:none;border:2px solid var(--accent);cursor:pointer;background:none;color:var(--accent)}
+.btn.primary{background:var(--accent);color:#000}
+.btn:hover{filter:brightness(1.15)}
+.chart{width:100%;max-width:26rem;justify-self:start}
+.chart svg{width:100%;height:auto;display:block}
+.chart .base{stroke:var(--line);stroke-width:2}
+.chart rect{fill:var(--bar);transform-origin:50% 100%;transform-box:fill-box;animation:grow .9s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i)*90ms)}
+.chart rect.hi{fill:var(--accent)}
+@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@media (min-width:52rem){
+  .hero .wrap{grid-template-columns:1.2fr 1fr;align-items:center}
+  .chart{justify-self:end}
+}
+
+.about p{max-width:40rem;margin:0 0 1rem}
+
+/* Carrossel de experiência */
+.viewport{overflow:hidden;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.track{display:flex;transition:transform .55s cubic-bezier(.4,0,.2,1)}
+.slide{flex:0 0 100%;padding:1.75rem}
+.slide h3{font-size:1.45rem;font-weight:700}
+.when{color:var(--accent);font-size:.98rem;margin:.35rem 0 1rem}
+.slide ul{margin:0;padding-left:1.15rem;max-width:42rem}
+.slide li{margin-bottom:.45rem}
+.controls{display:flex;align-items:center;gap:.6rem;margin-top:1rem;flex-wrap:wrap}
+.controls .btn{padding:.45rem .9rem;font-size:.95rem}
+.dots{display:flex;gap:.5rem;margin:0 auto 0 .5rem}
+.dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--bar);background:none;padding:0;cursor:pointer}
+.dot[aria-current="true"]{background:var(--accent);border-color:var(--accent)}
+
+/* Projetos */
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(16.5rem,1fr))}
+.card{display:flex;flex-direction:column;gap:.75rem;padding:1.15rem;border:1px solid var(--line);border-radius:8px;background:var(--surface);text-decoration:none;color:var(--ink);transition:border-color .2s}
+.card:hover{border-color:var(--accent)}
+.card h3{font-size:1.1rem;font-weight:700;overflow-wrap:anywhere}
+.card p{margin:0;color:var(--muted);font-size:.97rem;line-height:1.55;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;padding:0;margin:0;list-style:none}
+.tags li{font-size:.82rem;padding:.12rem .55rem;border:1px solid var(--line);border-radius:99px;color:var(--muted)}
+.more{margin-top:1.5rem}
+
+.skills{display:grid;margin:0;border:1px solid var(--line);border-radius:8px;background:var(--surface);overflow:hidden}
+.skills div{display:grid;gap:.25rem;padding:1rem 1.25rem;border-top:1px solid var(--line)}
+.skills div:first-child{border-top:0}
+.skills dt{font:700 1rem var(--display)}
+.skills dd{margin:0;color:var(--muted)}
+@media (min-width:42rem){.skills div{grid-template-columns:11rem 1fr;gap:1.5rem}}
+
+.two{display:grid;gap:3rem}
+@media (min-width:52rem){.two{grid-template-columns:1fr 1fr}}
+.plain{list-style:none;margin:0;padding:0}
+.plain li{padding:.65rem 0;border-top:1px solid var(--line)}
+.plain li:first-child{border-top:0;padding-top:0}
+.plain small{display:block;color:var(--muted);font-size:.92rem}
+
+.contact p{max-width:34rem;color:var(--muted);margin:0 0 1.5rem}
+footer{padding:2rem 0 3rem;color:var(--muted);font-size:.92rem;border-top:1px solid var(--line)}
+@media (prefers-reduced-motion:reduce){.chart rect{animation:none}.track,.card{transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Lucas Arcas Farré</h1>
+      <p class="role">Analista de Power BI Jr.</p>
+      <p class="lead">Transformo dados em dashboards e automações que chegam atualizados ao cliente todos os dias. Trabalho com Power BI, Python, SQL, APIs REST e Azure.</p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:lucasfarre08@gmail.com">Enviar e-mail</a>
+        <a class="btn" href="https://github.com/Lucas-Farre">Ver GitHub</a>
+      </div>
+    </div>
+    <div class="chart" aria-hidden="true">
+      <svg viewBox="0 0 320 200">
+        <line class="base" x1="0" y1="190" x2="320" y2="190"/>
+        <rect style="--i:0" x="10"  y="120" width="32" height="70" rx="3"/>
+        <rect style="--i:1" x="52"  y="90"  width="32" height="100" rx="3"/>
+        <rect style="--i:2" x="94"  y="105" width="32" height="85" rx="3"/>
+        <rect style="--i:3" x="136" y="60"  width="32" height="130" rx="3"/>
+        <rect style="--i:4" x="178" y="75"  width="32" height="115" rx="3"/>
+        <rect style="--i:5" x="220" y="40"  width="32" height="150" rx="3"/>
+        <rect style="--i:6" class="hi" x="262" y="15" width="32" height="175" rx="3"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="about" id="sobre">
+  <div class="wrap">
+    <h2>Sobre mim</h2>
+    <p>Sou formado em Análise e Desenvolvimento de Sistemas e curso Engenharia de Software. Atuo na área de BI e dados, desenvolvendo dashboards, automações e integrações entre sistemas com Power BI, Python, SQL, APIs REST e Azure.</p>
+    <p>Complemento a formação com certificações em nuvem (AWS), cibersegurança e ciência de dados. Tenho inglês avançado, espanhol básico e português fluente.</p>
+  </div>
+</section>
+
+<section id="experiencia">
+  <div class="wrap">
+    <h2>Experiência</h2>
+    <div id="car" role="region" aria-roledescription="carrossel" aria-label="Experiência profissional">
+      <div class="viewport">
+        <div class="track">
+          <article class="slide">
+            <h3>Analista de Power BI Jr.</h3>
+            <p class="when">Set/2026 – atualmente</p>
+            <p>Cargo atual, trabalhando com dashboards e dados em Power BI.</p>
+          </article>
+          <article class="slide">
+            <h3>Assistente de BI</h3>
+            <p class="when">Jun/2024 – Ago/2026</p>
+            <ul>
+              <li>Dashboards e automações com atualização diária no Power BI.</li>
+              <li>Redução do tempo de análise de dados e melhoria na entrega aos clientes com Python e SQL.</li>
+              <li>Integração de APIs (Wialon, VTRAX) via REST para automatizar atividades.</li>
+              <li>Soluções no Azure (VMs e Azure Functions).</li>
+              <li>Testes funcionais em APIs REST com Postman, identificando inconsistências e validando integrações entre sistemas.</li>
+              <li>Otimização de processos para ganho de eficiência operacional.</li>
+            </ul>
+          </article>
+          <article class="slide">
+            <h3>Jovem Aprendiz em Recursos Humanos</h3>
+            <p class="when">Mai/2023 – Jun/2024</p>
+            <ul>
+              <li>Organização de planilhas e materiais de onboarding e EPI.</li>
+              <li>Criação e apresentação de materiais no PowerPoint e no Canva.</li>
+              <li>Organização da documentação dos colaboradores.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="btn" type="button" id="prev" aria-label="Experiência anterior">Anterior</button>
+        <button class="btn" type="button" id="next" aria-label="Próxima experiência">Próxima</button>
+        <div class="dots" id="dots"></div>
+        <button class="btn" type="button" id="play" aria-label="Pausar rotação automática">Pausar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projetos">
+  <div class="wrap">
+    <h2>Projetos</h2>
+    <div class="grid" id="projects"></div>
+    <div class="more"><a class="btn" href="https://github.com/Lucas-Farre?tab=repositories">Ver todos os repositórios</a></div>
+  </div>
+</section>
+
+<section id="habilidades">
+  <div class="wrap">
+    <h2>Habilidades</h2>
+    <dl class="skills">
+      <div><dt>Dados</dt><dd>Power BI, SQL, NoSQL, Python, PHP</dd></div>
+      <div><dt>Back-end</dt><dd>.NET, Java, Node.js, Python (APIs), HTML5, CSS3</dd></div>
+      <div><dt>APIs</dt><dd>Postman, integração REST</dd></div>
+      <div><dt>Cloud</dt><dd>Azure</dd></div>
+      <div><dt>Ferramentas</dt><dd>GitHub, Scrum, Trello, Pacote Office, HubSpot (CRM)</dd></div>
+      <div><dt>Sistemas</dt><dd>Desenvolvimento em Windows e Linux</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="formacao">
+  <div class="wrap two">
+    <div>
+      <h2>Formação</h2>
+      <ul class="plain">
+        <li>Análise e Desenvolvimento de Sistemas (Tecnólogo)<small>USCS. Concluído.</small></li>
+        <li>Engenharia de Software (Bacharelado)<small>Anhembi Morumbi, noturno. Cursando.</small></li>
+        <li>Inglês<small>Wizard by Pearson. Concluído.</small></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Cursos e certificados</h2>
+      <ul class="plain">
+        <li>AWS Cloud Foundations<small>Amazon Web Services</small></li>
+        <li>Computação em Nuvem, AWS Discovery Day<small>Ka Solution</small></li>
+        <li>Introdução à Cibersegurança<small>Cisco NetAcad</small></li>
+        <li>ISO/IEC 42001 Foundation</li>
+        <li>Data Science: análise e visualização de dados<small>Alura</small></li>
+        <li>Dashboard com Power BI: visualizando dados<small>Alura</small></li>
+        <li>BI: Power Query<small>Alura</small></li>
+        <li>DevOps: trabalhando com repositórios no GitHub<small>Alura</small></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <div class="wrap">
+    <h2>Contato</h2>
+    <p>Quer conversar sobre dados, dashboards ou integrações? Escreva para mim.</p>
+    <div class="cta">
+      <a class="btn primary" href="mailto:lucasfarre08@gmail.com">lucasfarre08@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/lucas-arcas-farré-5503321a4">LinkedIn</a>
+      <a class="btn" href="https://github.com/Lucas-Farre">GitHub</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">Lucas Arcas Farré</div></footer>
+
+<script>
+/* ===== PROJETOS =====
+   Para adicionar um projeto, copie um bloco { ... } abaixo e preencha:
+   nome, desc, tags (lista) e repo (nome do repositório no GitHub). */
+var GITHUB_USER = "Lucas-Farre";
+var PROJECTS = [
+  { nome:"report-executor-cli", repo:"report-executor-cli", tags:["Python","SQLite","CLI"],
+    desc:"CLI em Python que executa tarefas automatizadas, acompanha o status da execução e salva resultados em arquivos e em banco SQLite." },
+  { nome:"ml-demand-forecast-pipeline", repo:"ml-demand-forecast-pipeline", tags:["Python","Machine Learning","FastAPI"],
+    desc:"Pipeline de previsão de demanda: ETL, treinamento do modelo, modelo persistido e API com FastAPI." },
+  { nome:"smart-api-retry", repo:"smart-api-retry", tags:["Node.js","axios","APIs"],
+    desc:"Utilitário para requisições HTTP com retry automático e backoff exponencial, feito para integrações mais resilientes." },
+  { nome:"java_teste_automacao", repo:"java_teste_automacao", tags:["Java","Selenium","Maven"],
+    desc:"Automação de testes com Selenium WebDriver no SauceDemo, usando Page Object e leitura de dados do Excel." },
+  { nome:"Dashboard-HTML-E-CSS-", repo:"Dashboard-HTML-E-CSS-", tags:["HTML","CSS"],
+    desc:"Dashboard responsivo em HTML e CSS puro, com sidebar, cards, gráfico de barras mensal e tabela de dados." },
+  { nome:"Site-Hotel", repo:"Site-Hotel", tags:["HTML","CSS","JavaScript"],
+    desc:"Site institucional de hotel com cards de quartos interativos, modal de reserva e validação antes de reservar." }
+];
+(function(){
+  var box=document.getElementById("projects");
+  PROJECTS.forEach(function(p){
+    var a=document.createElement("a");
+    a.className="card"; a.href="https://github.com/"+GITHUB_USER+"/"+p.repo; a.target="_blank"; a.rel="noopener";
+    var h=document.createElement("h3"); h.textContent=p.nome; a.appendChild(h);
+    var d=document.createElement("p"); d.textContent=p.desc; a.appendChild(d);
+    var ul=document.createElement("ul"); ul.className="tags";
+    p.tags.forEach(function(t){var li=document.createElement("li");li.textContent=t;ul.appendChild(li)});
+    a.appendChild(ul); box.appendChild(a);
+  });
+})();
+
+/* ===== CARROSSEL ===== */
+(function(){
+  var track=document.querySelector("#car .track"),slides=[].slice.call(track.children),
+      dots=document.getElementById("dots"),playBtn=document.getElementById("play"),
+      i=0,timer=null,playing=!matchMedia("(prefers-reduced-motion: reduce)").matches,hover=false;
+  slides.forEach(function(_,n){
+    var b=document.createElement("button");b.type="button";b.className="dot";
+    b.setAttribute("aria-label","Ir para a experiência "+(n+1));
+    b.onclick=function(){go(n)};dots.appendChild(b);
+  });
+  function go(n){
+    i=(n+slides.length)%slides.length;
+    track.style.transform="translateX(-"+(i*100)+"%)";
+    slides.forEach(function(s,k){s.setAttribute("aria-hidden",k!==i);if(k!==i){s.setAttribute("inert","")}else{s.removeAttribute("inert")}});
+    [].forEach.call(dots.children,function(d,k){d.setAttribute("aria-current",k===i)});
+  }
+  function tick(){clearInterval(timer);if(playing&&!hover){timer=setInterval(function(){go(i+1)},6000)}}
+  function label(){playBtn.textContent=playing?"Pausar":"Reproduzir";playBtn.setAttribute("aria-label",playing?"Pausar rotação automática":"Retomar rotação automática")}
+  document.getElementById("prev").onclick=function(){go(i-1);tick()};
+  document.getElementById("next").onclick=function(){go(i+1);tick()};
+  dots.addEventListener("click",tick);
+  playBtn.onclick=function(){playing=!playing;label();tick()};
+  var car=document.getElementById("car");
+  car.addEventListener("mouseenter",function(){hover=true;tick()});
+  car.addEventListener("mouseleave",function(){hover=false;tick()});
+  car.addEventListener("focusin",function(){hover=true;tick()});
+  car.addEventListener("focusout",function(){hover=false;tick()});
+  go(0);label();tick();
+})();
+</script>
+</body>
+</html>
